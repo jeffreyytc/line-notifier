@@ -1,0 +1,15 @@
+﻿@if (ViewBag.SubscriptionCount == 0)
+{
+    <p>No subscriptions yet. Ask people to subscribe first.</p>
+}
+else
+{
+    <p>Send a message to @ViewBag.SubscriptionCount subscribers.</p>
+    <form method="post" asp-action="SendMessage">
+        <div class="mb-3">
+            <label for="messageTextarea" class="form-label">Message</label>
+            <textarea class="form-control" id="messageTextarea" rows="3" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+}

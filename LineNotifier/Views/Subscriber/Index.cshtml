@@ -1,0 +1,37 @@
+﻿<p>
+    <img class="rounded-circle me-2" style="width:40px;" src="@ViewBag.User.Picture" />
+    @(ViewBag.User.Name)
+    <a asp-action="LogOut" class="btn btn-outline-secondary btn-sm ms-2">Sign Out</a>
+</p>
+<p>You have @ViewBag.Subscriptions.Count subscriptions:</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Target Type</th>
+            <th>Target</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var subscription in ViewBag.Subscriptions)
+        {
+            <tr>
+                <td>@subscription.Id</td>
+                <td>@subscription.TargetType</td>
+                <td>@subscription.Target</td>
+                <td>@subscription.CreatedDate</td>
+                <td>
+                    <form asp-action="Unsubscribe">
+                        <input type="hidden" name="id" value="@subscription.Id" />
+                        <button type="submit" class="btn btn-danger">Unsubscribe</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<p>
+    <a asp-action="Add" class="btn btn-success">Add Subscription</a>
+</p>
